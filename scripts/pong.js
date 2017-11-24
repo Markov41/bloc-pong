@@ -23,7 +23,7 @@ var step = function() {
 };
 
 var update = function() {
-
+    player.update();
 };
 
 var render = function() {
@@ -76,6 +76,11 @@ Ball.prototype.render = function() {
     context.fill();
 };
 
+Ball.prototype.update = function() {
+    this.x += this.x_speed;
+    this.y += this.y_speed;
+};
+
 var player = new Player();
 var computer = new Computer();
 var ball = new Ball(200, 300);
@@ -87,3 +92,40 @@ var render = function() {
     computer.render();
     ball.render();
 };
+
+Player.prototype.update = function() {
+    for (var key in keysDown) {
+        var value = Number(key);
+        if (value == 37) { // left arrow
+            this.paddle.move(-4, 0);
+        } else if (value == 39) { // right arrow
+            this.paddle.move(4, 0);
+        } else {
+            this.paddle.move(0, 0);
+        }
+    }
+};
+
+var keysDown = {};
+
+window.addEventListener("keydown", function(event) {
+    keysDown[event.keyCode] = true;
+});
+
+window.addEventListener("keyup", function(event) {
+    delete keysDown[event.keyCode];
+});
+
+Paddle.prototype.move = function(x, y) {
+    this.x += x;
+    this.y += y;
+    this.x_speed = x;
+    this.y_speed = y;
+    if (this.x < 0) { // all the way to the left
+        this.x = 0;
+        this.x_speed = 0;
+    } else if (this.x + this.width > 400) { // all the way to the right
+        this.x = 400 - this.width;
+        this.x_speed = 0;
+    }
+}
