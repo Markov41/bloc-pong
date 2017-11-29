@@ -150,22 +150,44 @@ Ball.prototype.update = function(paddle1, paddle2) {
         this.x_speed = -this.x_speed;
     }
 
-    if (this.y < 0) {
+    if(this.y < 0) {
         this.x_speed = 0;
         this.y_speed = 3;
         this.x = 200;
         this.y = 300;
-        playerScore++;
+        playerScore ++;
         document.getElementById("playerScore").innerHTML = playerScore;
+
+    if(playerScore > 11) {
+        document.getElementById("gameover").innerHTML = "YOU WON!";
+        document.getElementById("gameover").style.visibility = "visible";
+        document.getElementById("gameover").style.cursor = "pointer";
+        computerScore = 0;
+        playerScore = 0;
+        document.getElementById("computerScore").innerHTML = computerScore;
+        document.getElementById("playerScore").innerHTML = playerScore;
+        }
     }
     
-    if (this.y > 600) {
+    if(this.y > 600) { //computer scores
         this.x_speed = 0;
         this.y_speed = 3;
         this.x = 200;
         this.y = 300;
-        computerScore++;
+        computerScore ++;
         document.getElementById("computerScore").innerHTML = computerScore;
+
+    if(computerScore > 11) {
+        document.getElementById("gameover").innerHTML = "YOU LOST!";
+        document.getElementById("gameover").style.visibility = "visible";
+        document.getElementById("gameover").style.cursor = "pointer";
+        computerScore = 0;
+        playerScore = 0;
+        document.getElementById("computerScore").innerHTML = computerScore;
+        document.getElementById("playerScore").innerHTML = playerScore;
+        this.x_speed = 0;
+        this.y_speed = 0;
+        }
     }
 
     if (top_y > 300) {

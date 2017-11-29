@@ -1,3 +1,7 @@
+html {
+  overflow: hidden;
+}
+
 #pong {
     position: absolute;
     top: 0;
@@ -23,4 +27,11 @@
   text-align: center;
   color: red;
   font-size: 25px;
+}
+
+#gameover {
+  color: #E04747;
+  text-align: center;
+  font-size: 35px;
+  position: center;
 }
