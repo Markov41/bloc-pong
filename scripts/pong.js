@@ -7,6 +7,8 @@ var canvas = document.createElement('canvas');
 canvas.id = 'pong';
 var width = 400;
 var height = 600;
+var playerScore = 0;
+var computerScore = 0;
 canvas.width = width;
 canvas.height = height;
 var context = canvas.getContext('2d');
@@ -148,11 +150,22 @@ Ball.prototype.update = function(paddle1, paddle2) {
         this.x_speed = -this.x_speed;
     }
 
-    if (this.y < 0 || this.y > 600) { // a point was scored
+    if (this.y < 0) {
         this.x_speed = 0;
         this.y_speed = 3;
         this.x = 200;
         this.y = 300;
+        playerScore++;
+        document.getElementById("playerScore").innerHTML = playerScore;
+    }
+    
+    if (this.y > 600) {
+        this.x_speed = 0;
+        this.y_speed = 3;
+        this.x = 200;
+        this.y = 300;
+        computerScore++;
+        document.getElementById("computerScore").innerHTML = computerScore;
     }
 
     if (top_y > 300) {

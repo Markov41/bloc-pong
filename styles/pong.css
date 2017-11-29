@@ -6,3 +6,21 @@
     right: 0;
     margin: auto;
 }
+
+#computerScore {
+  position: absolute;
+  left: 170px;
+  bottom: 440px;
+  text-align: center;
+  color: red;
+  font-size: 25px;
+}
+
+#playerScore {
+  position: absolute;
+  left: 170px;
+  bottom: 390px;
+  text-align: center;
+  color: red;
+  font-size: 25px;
+}
